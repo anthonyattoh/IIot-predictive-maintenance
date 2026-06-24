@@ -14,7 +14,7 @@ This system utilizes **multivariate thresholding** to enhance reliability and re
 ## 3. Technology Stack
 * **Data Generation & Analysis:** Python 3.x (libraries: `random`, `time`).
 * **Cloud Integration:** Python `requests` library (for Webhooks), Make.com.
-* **Development Environment:** VS Code / Terminal.
+* **Development & Containerization:** VS Code / Terminal / Docker (Isolated Edge Environment).
 
 ## 4. Key Engineering Concepts Demonstrated
 * **Industrial Internet of Things (IIoT) Data Simulation:** Handling multi-variable time-series data.
