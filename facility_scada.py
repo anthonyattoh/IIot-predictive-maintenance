@@ -25,8 +25,10 @@ THRESHOLDS = {
     "STATIC": {"min_wall_thickness_mm": 4.0} # If metal gets thinner than 4mm, it's a hazard
 }
 
-# Webhook for automation routing
-WEBHOOK_URL = "https://hook.eu1.make.com/hay78qvjfivjcekq1rry7bchza6i67vk"
+import os
+
+# Securely pull the webhook URL from the environment; fallback to a dummy string if missing
+WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "https://fallback.local/no-key-provided")
 
 # 2. MULTI-VARIABLE DIAGNOSTIC ENGINE
 def analyze_facility_health(telemetry):
