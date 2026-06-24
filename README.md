@@ -1,3 +1,4 @@
+![Build Status](https://github.com/anthonyattoh/IIot-predictive-maintenanceAME/actions/workflows/docker-build.yml/badge.svg)
 # Multivariate Pump Cavitation Predictive Maintenance Prototype
 
 ## 1. Overview
