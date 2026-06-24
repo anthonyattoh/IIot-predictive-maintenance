@@ -30,4 +30,4 @@ This system utilizes **multivariate thresholding** to enhance reliability and re
 
   ![Terminal Output](terminal.png)
 
-This project is a functional proof-of-concept for minimizing critical industrial downtime through proactive, multivariate analytics.d
+This project is a functional proof-of-concept for minimizing critical industrial downtime through proactive, multivariate analytics.
