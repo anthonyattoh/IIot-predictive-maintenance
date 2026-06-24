@@ -9,17 +9,8 @@ This system utilizes **multivariate thresholding** to enhance reliability and re
 * **Failure Mode Targeted:** Pump Cavitation (detected by a correlation of high vibration + low pressure).
 * **The Blueprint (Conceptual Flow):**
 
-```mermaid
-graph TD
-    subgraph Edge (Local Environment)
-        A[Physical Pump Sensors] -->|Telemetry Array| B(facility_scada.py)
-        B -->|Multivariate Analysis<br>High Vibration + Low Pressure| C{Anomaly Threshold?}
-    end
-    subgraph Cloud Architecture
-        C -->|Yes: Outbound JSON| D[Make.com Webhook]
-        D -->|Automated Alert Routing| E[Operator Gmail Inbox]
-    end
-```
+![Multivariate Predictive Maintenance Blueprint](blueprint.png)
+
 ## 3. Technology Stack
 * **Data Generation & Analysis:** Python 3.x (libraries: `random`, `time`).
 * **Cloud Integration:** Python `requests` library (for Webhooks), Make.com.
@@ -39,4 +30,4 @@ graph TD
 
   ![Terminal Output](terminal.png)
 
-This project is a functional proof-of-concept for minimizing critical industrial downtime through proactive, multivariate analytics.
+This project is a functional proof-of-concept for minimizing critical industrial downtime through proactive, multivariate analytics.d
