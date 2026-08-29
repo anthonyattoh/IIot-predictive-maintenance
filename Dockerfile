@@ -12,7 +12,7 @@ ENV PYTHONUNBUFFERED=1
 RUN pip install --no-cache-dir requests
 
 # Copy the SCADA engine script into the container
-COPY facility_scada.py .
+COPY cavitation_detector/facility_scada.py .
 
 # Run the script when the container launches
 CMD ["python", "facility_scada.py"]
