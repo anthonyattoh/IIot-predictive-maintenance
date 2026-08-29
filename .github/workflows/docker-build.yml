@@ -20,3 +20,12 @@ jobs:
     - name: Run Validation Build Test
       run: |
         docker build -t pump-scada-edge:test .
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install test dependencies
+      run: pip install pytest
+    - name: Run unit tests
+      run: pytest cavitation_detector/test_facility_scada.py
