@@ -16,14 +16,18 @@ for name in feature_names:
     inputs.append(value)
 
 if st.button("Predict RUL"):
-    X = np.array(inputs).reshape(1, -1)
-    prediction = model.predict(X)[0]
-    
-    st.metric("Predicted Remaining Useful Life", f"{prediction:.0f} cycles")
-    
-    if prediction < 30:
-        st.error("Critical - schedule maintenance soon")
-    elif prediction < 60:
-        st.warning("Degrading - monitor closely")
-    else:
-        st.success("Healthy")
+    try:
+        X = np.array(inputs).reshape(1, -1)
+        prediction = model.predict(X)[0]
+
+        st.metric("Predicted Remaining Useful Life", f"{prediction:.0f} cycles")
+
+        if prediction < 30:
+            st.error("Critical - schedule maintenance soon")
+        elif prediction < 60:
+            st.warning("Degrading - monitor closely")
+        else:
+            st.success("Healthy")
+
+    except Exception as e:
+        st.error(f"Couldn't generate a prediction - please check that all sensor values are valid numbers. ({e})")
