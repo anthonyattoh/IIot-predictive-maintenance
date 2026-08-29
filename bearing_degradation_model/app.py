@@ -2,8 +2,7 @@ import streamlit as st
 import joblib
 import numpy as np
 
-model = joblib.load('bearing_model.pkl')
-
+model = joblib.load('bearing_degradation_model/bearing_model.pkl')
 st.title("Bearing Degradation Predictor")
 st.write("Enter recent sensor readings to estimate Remaining Useful Life (RUL)")
 
