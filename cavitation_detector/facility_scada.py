@@ -121,39 +121,39 @@ def generate_facility_telemetry():
 
 
 # 5. MAIN EXECUTIVE LOOP
-print("=========================================================")
-print("   INITIALIZING SCADA PREDICTIVE MAINTENANCE MONITOR     ")
-print("=========================================================\n")
+def run_monitor():
+    print("=========================================================")
+    print("   INITIALIZING SCADA PREDICTIVE MAINTENANCE MONITOR     ")
+    print("=========================================================\n")
 
-try:
-    while True:
-        # 1. Scrape data from all "field sensors"
-        live_data = generate_facility_telemetry()
+    try:
+        while True:
+            live_data = generate_facility_telemetry()
+            faults_found = analyze_facility_health(live_data)
 
-        # 2. Run diagnostics
-        faults_found = analyze_facility_health(live_data)
+            print(f"--- [SCAN TIMESTAMP: {time.strftime('%H:%M:%S')}] ---")
+            print(f" Rotating Vib: {live_data['ROTATING_MACHINERY']['vibration']:.1f} mm/s | Static Wall: {live_data['STATIC_VESSEL']['wall_thickness']:.2f} mm")
+            print(f" Fluid Acoustic: {live_data['PROCESS_FLUIDS']['acoustic_emission']:.1f} dB | Oil Water Content: {live_data['TRIBOLOGY_SUMP']['water_content']*100:.1f}%")
 
-        # 3. Log results to screen
-        print(f"--- [SCAN TIMESTAMP: {time.strftime('%H:%M:%S')}] ---")
-        print(f" Rotating Vib: {live_data['ROTATING_MACHINERY']['vibration']:.1f} mm/s | Static Wall: {live_data['STATIC_VESSEL']['wall_thickness']:.2f} mm")
-        print(f" Fluid Acoustic: {live_data['PROCESS_FLUIDS']['acoustic_emission']:.1f} dB | Oil Water Content: {live_data['TRIBOLOGY_SUMP']['water_content']*100:.1f}%")
+            if faults_found:
+                print("\n🚨 SYSTEM ALERTS DETECTED:")
+                for fault in faults_found:
+                    print(f" -> {fault}")
+                try:
+                    requests.post(WEBHOOK_URL, json={"facility_status": "ANOMALY", "alerts": faults_found, "raw_data": live_data}, timeout=5)
+                    print("⚡ Cloud Sync: Transmitted multi-asset diagnostic payload to Make.com pipeline.")
+                except requests.exceptions.RequestException:
+                    pass
+            else:
+                print("✅ All subsystems operating within safe baselines.")
 
-        if faults_found:
-            print("\n🚨 SYSTEM ALERTS DETECTED:")
-            for fault in faults_found:
-                print(f" -> {fault}")
+            print("-" * 57 + "\n")
+            time.sleep(3)
 
-            # Send the complete nested payload to Make.com
-            try:
-                requests.post(WEBHOOK_URL, json={"facility_status": "ANOMALY", "alerts": faults_found, "raw_data": live_data}, timeout=5)
-                print("⚡ Cloud Sync: Transmitted multi-asset diagnostic payload to Make.com pipeline.")
-            except requests.exceptions.RequestException:
-                pass
-        else:
-            print("✅ All subsystems operating within safe baselines.")
+    except KeyboardInterrupt:
+        print("\n[INFO] Facility SCADA Monitor offline.")
 
-        print("-" * 57 + "\n")
-        time.sleep(3)
 
-except KeyboardInterrupt:
-    print("\n[INFO] Facility SCADA Monitor offline.")
+if __name__ == "__main__":
+    run_monitor()
+
