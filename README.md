@@ -131,11 +131,10 @@ streamlit run bearing_degradation_model/app.py
 ---
 
 ## Future work
-> Where this project could realistically grow next, beyond its current scope.
 
+- Combine both components into a single unified dashboard, showing real-time cavitation alerts alongside predicted bearing RUL for the same simulated facility
 - Expand the ML model to classify failure type, not just estimate RUL
 - Explore real, anonymized industrial vibration datasets as they become available
-
 ---
 
 ## Dataset acknowledgment
