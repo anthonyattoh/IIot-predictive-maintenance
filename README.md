@@ -124,7 +124,6 @@ streamlit run bearing_degradation_model/app.py
 
 ## Future work
 
-- Replace simulated random sensor data in the cavitation detector with a realistic drifting/degrading simulation
 - Expand the ML model to classify failure type, not just estimate RUL
 - Explore real, anonymized industrial vibration datasets as they become available
 
