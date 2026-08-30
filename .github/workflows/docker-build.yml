@@ -29,3 +29,5 @@ jobs:
       run: pip install pytest
     - name: Run unit tests
       run: pytest cavitation_detector/test_facility_scada.py
+    - name: Install test dependencies
+      run: pip install -r requirements.txt pytest
