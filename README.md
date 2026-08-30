@@ -7,6 +7,7 @@ A two-part Industrial IoT project demonstrating both **rule-based condition moni
 **Live ML demo:** [iiot-predictive-maintenance.streamlit.app](https://iiot-predictive-maintenance.streamlit.app)
 
 **Live dashboard in action:**
+
 <img width="582" height="973" alt="Screenshot 2026-08-30 102914" src="https://github.com/user-attachments/assets/aff2f14e-a0da-47b8-a88b-8d31e283e5b4" />
 
 ---
