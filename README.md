@@ -13,6 +13,7 @@ A two-part Industrial IoT project demonstrating both **rule-based condition moni
 ---
 
 ## Why this project
+> Real, documented maintenance gaps in Nigerian oil & gas motivated a sensor-driven alternative to Excel-based tracking.
 
 Nigerian oil and gas operations face well-documented maintenance gaps:
 
@@ -26,6 +27,7 @@ This project is a small-scale demonstration of the kind of system that could hel
 ---
 
 ## Project structure
+> Two clearly separated components — a rule-based detector and an ML model — not blended under one vague "AI" label.
 
 This repo intentionally separates two different techniques, rather than blending them under one vague "AI-powered" label:
 
@@ -41,6 +43,7 @@ IIot-predictive-maintenance/
 ```
 
 ### 1. Cavitation detector (rule-based)
+> Multivariate threshold logic catches pump cavitation in real time and pushes alerts to the cloud via webhook.
 
 Simulates a critical failure mode — **pump cavitation** — common in industrial oil and gas assets, using an Edge-to-Cloud architecture: multi-parameter data is generated and analyzed locally (the Edge, in Python) and critical alerts are pushed into an automated cloud workflow via Webhooks (Make.com).
 
@@ -62,6 +65,7 @@ Uses **multivariate thresholding** to reduce the false positives common in singl
 ![Terminal Output](cavitation_detector/terminal.png)
 
 ### 2. Bearing degradation predictor (machine learning)
+> A tuned Random Forest predicts equipment Remaining Useful Life with ~10.5 cycles of error, deployed as a live dashboard.
 
 Predicts Remaining Useful Life (RUL) for rotating equipment based on sensor trends, trained on NASA's CMAPSS FD001 dataset.
 
@@ -77,6 +81,7 @@ Predicts Remaining Useful Life (RUL) for rotating equipment based on sensor tren
 ---
 
 ## System architecture (conceptual)
+> Sensors feed both components: threshold checks trigger instant alerts, while the ML model estimates time-to-failure.
 
 ```mermaid
 flowchart LR
@@ -91,6 +96,7 @@ flowchart LR
 ---
 
 ## Tech stack
+> Python, scikit-learn, and Streamlit for the ML side; Docker and GitHub Actions for CI/CD on both.
 
 - **Data & ML:** Python, pandas, scikit-learn, NASA CMAPSS FD001 dataset
 - **Dashboard:** Streamlit
@@ -98,6 +104,7 @@ flowchart LR
 - **Infrastructure:** Docker, GitHub Actions (CI), VS Code
 
 ## Key engineering concepts demonstrated
+> Covers condition-based monitoring, prognostics, and basic MLOps — not just a single modeling technique.
 
 - **IIoT data simulation:** handling multi-variable, multi-sensor time-series data
 - **Condition-Based Monitoring (CBM):** threshold-based intervention using live asset health signals
@@ -112,6 +119,7 @@ Data cleaning & feature selection · time-series feature engineering · supervis
 ---
 
 ## Running locally
+> Three commands to clone, install, and launch the dashboard yourself.
 
 ```bash
 git clone https://github.com/anthonyattoh/IIot-predictive-maintenance.git
@@ -123,6 +131,7 @@ streamlit run bearing_degradation_model/app.py
 ---
 
 ## Future work
+> Where this project could realistically grow next, beyond its current scope.
 
 - Expand the ML model to classify failure type, not just estimate RUL
 - Explore real, anonymized industrial vibration datasets as they become available
